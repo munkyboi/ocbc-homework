@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BottomNavContainer = styled('div')`
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: calc(100% - 4rem);

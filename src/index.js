@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import axios from 'axios';
 import reportWebVitals from './reportWebVitals';
@@ -8,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 // REDUX
 import { Provider } from 'react-redux'
 import store from '@Redux/store'
+
+import './index.css';
 
 // SET AXIOS GLOBAL DEFAULTS
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;

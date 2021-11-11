@@ -16,7 +16,6 @@ import userSlice from '@Slices/userSlice'
 // COMPONENTS
 import {
   BottomNav,
-  TopNav,
   PageHeader,
   ContentContainer,
   CustomTextField,
@@ -60,9 +59,7 @@ const LoginPage = () => {
   ]
 
   return (
-    <LoginPageContainer className='container'>
-
-      <TopNav />
+    <LoginPageContainer className="transition-item container">
 
       <Formik
         initialValues={{

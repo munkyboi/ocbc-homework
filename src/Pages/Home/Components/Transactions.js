@@ -1,10 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 
-// REDUX
-import { useDispatch, useSelector } from 'react-redux'
-import userSlice, { getUserState } from '@Slices/userSlice'
-
 // COMPONENTS
 import { TransactionItem } from './'
 

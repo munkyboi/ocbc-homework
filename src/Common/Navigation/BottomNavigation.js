@@ -83,7 +83,7 @@ const BottomNav = (props) => {
   }, [actions])
 
   return (
-    <BottomNavContainer ref={bottomNavRef}>
+    <BottomNavContainer ref={bottomNavRef} className="bottomNav">
       {actions && actions.map(item => (
         <RenderAction
           key={item.key}

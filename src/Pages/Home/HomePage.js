@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 // COMPONENTS
-import { Papyrus, BottomNav, TopNav, ContentContainer } from '@Common'
+import { Papyrus, BottomNav, ContentContainer } from '@Common'
 import { Box, Typography } from '@mui/material'
 import { Balance, Transactions } from './Components'
 
@@ -26,9 +26,7 @@ const HomePage = () => {
   ]
 
   return (
-    <HomePageContainer>
-      
-      <TopNav />
+    <HomePageContainer className="transition-item container">
 
       <ContentContainer>
         <Box className="mainBox">

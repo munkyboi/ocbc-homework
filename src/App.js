@@ -7,12 +7,14 @@ import {
 import AuthRoute from './Routers/AuthRoute';
 import jwtDecode from 'jwt-decode'
 import { ToastContainer } from 'react-toastify'
+import PageTransition from 'react-router-page-transition'
 
 // REDUX
 import { useDispatch } from 'react-redux'
 import userSlice from '@Slices/userSlice'
 
 // PAGES
+import { TopNav } from '@Common'
 import { HomePage, TransferPage, LoginPage, RegisterPage } from '@Pages'
 
 // STYLES
@@ -64,14 +66,24 @@ const App = () => {
       {ready &&
         <ThemeProvider theme={theme}>
           <AppContainer>
+
+            <TopNav />
+
             <Router>
-              <Switch>
-                <AuthRoute path="/" component={HomePage} exact />
-                <AuthRoute path="/transfer" component={TransferPage} exact />
-                <Route path="/login" component={LoginPage} exact />
-                <Route path="/register" component={RegisterPage} exact />
-              </Switch>
+              <Route
+                render={({ location }) => (
+                  <PageTransition timeout={300}>
+                    <Switch location={location}>
+                      <AuthRoute path="/" component={HomePage} exact />
+                      <AuthRoute path="/transfer" component={TransferPage} exact />
+                      <Route path="/login" component={LoginPage} exact />
+                      <Route path="/register" component={RegisterPage} exact />
+                    </Switch>
+                  </PageTransition>
+                )}
+              />
             </Router>
+
             <ToastContainer
               position="top-center"
               autoClose={5000}

@@ -3,13 +3,12 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 // FORMIK
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup';
 
 // COMPONENTS
 import {
   BottomNav,
-  TopNav,
   PageHeader,
   ContentContainer,
   CustomTextField,
@@ -80,9 +79,7 @@ const TransferPage = () => {
   }, [payees])
 
   return (
-    <TransferPageContainer className='container'>
-
-      <TopNav />
+    <TransferPageContainer className="transition-item container">
 
       <Formik
         initialValues={{

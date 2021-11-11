@@ -16,7 +16,6 @@ import userSlice from '@Slices/userSlice'
 // COMPONENTS
 import {
   BottomNav,
-  TopNav,
   PageHeader,
   ContentContainer,
   CustomTextField,
@@ -54,9 +53,7 @@ const RegisterPage = () => {
   ]
 
   return (
-    <RegisterPageContainer className='container'>
-
-      <TopNav />
+    <RegisterPageContainer className="transition-item container">
 
       <Formik
         initialValues={{
