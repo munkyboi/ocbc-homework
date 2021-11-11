@@ -6,8 +6,9 @@ export const BottomNavContainer = styled('div')`
   left: 0;
   width: calc(100% - 4rem);
   padding: 2rem;
-  background-image: linear-gradient(to top, rgba(245,245,245,1), rgba(245,245,245,0));
+  background-image: linear-gradient(to top, rgba(245,245,245,1) 50%, rgba(245,245,245,0));
   z-index: 10;
+
   .bottomButton {
     font-size: 1.25rem;
     width: calc(100%);
@@ -19,7 +20,7 @@ export const BottomNavContainer = styled('div')`
     letter-spacing: -0.05rem;
     font-weight: 900;
 
-    &:not(:last-of-type) {
+    &:not(:last-child) {
       margin-bottom: 0.5rem;
     }
 

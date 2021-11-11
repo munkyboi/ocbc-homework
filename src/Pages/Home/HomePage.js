@@ -1,8 +1,7 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 
 // COMPONENTS
-import { Papyrus, BottomNav, ContentContainer } from '@Common'
+import { Papyrus, BottomNav, ContentContainer } from '../../Common'
 import { Box, Typography } from '@mui/material'
 import { Balance, Transactions } from './Components'
 
@@ -10,18 +9,15 @@ import { Balance, Transactions } from './Components'
 import { HomePageContainer } from './HomePageStyles'
 
 const HomePage = () => {
-  const history = useHistory()
   const bottomActions = [
     {
       key: 'make-transfer',
-      type: 'button',
+      type: 'link',
+      to: '/transfer',
       color: 'primary',
       variant: 'contained',
       label: 'Make Transfer',
-      startIcon: 'paid',
-      onClick: () => {
-        history.push('/transfer')
-      },
+      startIcon: 'paid'
     },
   ]
 

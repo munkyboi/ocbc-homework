@@ -9,7 +9,7 @@ export const TopNavContainer = styled(Box)`
   left: 0;
   width: 100vw;
   z-index: 20;
-  height: 56px;
+  height: 64px;
   transition: background 0.15s ease-out;
 
   &.scrolled {
@@ -19,5 +19,6 @@ export const TopNavContainer = styled(Box)`
   .MuiToolbar-root {
     display: flex;
     justify-content: flex-end;
+    height: 64px;
   }
 `

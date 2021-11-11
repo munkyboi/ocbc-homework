@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 
 // COMPONENTS
 import { Icon, IconButton, Typography } from '@mui/material'
@@ -10,20 +10,14 @@ import { PageHeaderContainer } from './PageHeaderStyles'
 const PageHeader = (props) => {
   const {
     title,
-    canGoBack
+    backTo
   } = props
-  const history = useHistory()
-
-  const handleBackButton = () => {
-    history.goBack()
-  }
 
   return (
     <PageHeaderContainer>
-      {canGoBack &&
-        <IconButton fontSize="large"
+      {backTo &&
+        <IconButton to={backTo} component={Link} fontSize="large"
           className="backButton"
-          onClick={handleBackButton}
         >
           <Icon fontSize="large">arrow_back</Icon>
         </IconButton>

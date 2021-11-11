@@ -4,11 +4,11 @@ import cn from 'classnames'
 
 // REDUX
 import { useDispatch, useSelector } from 'react-redux'
-import userSlice, { getUserState } from '@Slices/userSlice'
+import userSlice, { getUserState } from '../../Redux/Slices/userSlice'
 
 // COMPONENTS
 import { AppBar, Button, Icon, Toolbar } from '@mui/material'
-import { Confirm } from '@Common'
+import { Confirm } from '../../Common'
 
 // STYLES
 import { TopNavContainer } from './TopNavigationStyles'

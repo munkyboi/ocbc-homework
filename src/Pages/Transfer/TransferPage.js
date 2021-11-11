@@ -15,7 +15,7 @@ import {
   CustomTextField,
   CustomCurrencyField,
   CustomSelectField
-} from '@Common'
+} from '../../Common'
 import { CircularProgress } from '@mui/material';
 
 // STYLES
@@ -97,7 +97,6 @@ const TransferPage = () => {
           (async() => {
             let errors = 0
             setSubmitting(true)
-            console.log("========== on submit", data)
             await axios({
               url: `/transfer`,
               method: 'POST',
@@ -126,7 +125,7 @@ const TransferPage = () => {
         {({ handleChange, handleBlur, setFieldValue, errors, isSubmitting, isValid, dirty, values, handleSubmit, validateField }) => (
           <Form>
             <ContentContainer>
-              <PageHeader title="Transfer" canGoBack />
+              <PageHeader title="Transfer" backTo='/' />
               <div className="form">
                 {!ready &&
                   <div className='spinny'>
@@ -164,7 +163,6 @@ const TransferPage = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   onValueChange={(ev) => {
-                    console.log(ev.floatValue)
                     setFieldValue('amount', ev.floatValue)
                   }}
                   error={!!errors.amount}

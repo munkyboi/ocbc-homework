@@ -18,18 +18,15 @@ const Transactions = () => {
         }
       }).then(res => {
         const data = res.data.data
-        console.log('============ TRANSACTION DATA', data)
         // reduce data and group by date
         const groups = data.reduce((groups, tx) => {
           const date = tx.transactionDate.split('T')[0];
-          console.log(date)
           if (!groups[date]) {
             groups[date] = []
           }
           groups[date].push(tx)
           return groups
         }, {})
-        console.log(groups)
         const groupArrays = Object.keys(groups).map(date => {
           return {
             date,
@@ -45,7 +42,6 @@ const Transactions = () => {
 
   React.useEffect(() => {
     if (transactions) {
-      console.log("========== transactions", transactions)
       setReady(true)
     }
   }, [transactions]) // eslint-disable-line

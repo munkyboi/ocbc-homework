@@ -4,7 +4,7 @@ import axios from 'axios'
 
 // REDUX
 import { useDispatch, useSelector } from 'react-redux'
-import userSlice, { getUserState } from '@Slices/userSlice'
+import userSlice, { getUserState } from '../../../Redux/Slices/userSlice'
 
 // COMPONENTS
 import { Typography } from '@mui/material'
@@ -23,8 +23,6 @@ const Balance = () => {
         Authorization: token
       }
     }).then(res => {
-      console.log(res)
-      console.log('=========== balance', res.data)
       dispatch(userSlice.actions.updateUserInfo(res.data))
     }).catch(err => {
       console.log(JSON.stringify(err))

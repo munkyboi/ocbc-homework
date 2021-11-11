@@ -1,20 +1,22 @@
 import React from 'react'
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Switch,
   Route
 } from "react-router-dom"
 import AuthRoute from './Routers/AuthRoute';
 import jwtDecode from 'jwt-decode'
 import { ToastContainer } from 'react-toastify'
+import { viewportObserver } from './Utils'
 
 // REDUX
-import { useDispatch } from 'react-redux'
-import userSlice from '@Slices/userSlice'
+import { Provider, useDispatch } from 'react-redux'
+import userSlice from './Redux/Slices/userSlice'
+import store from './Redux/store'
 
 // PAGES
-import { TopNav } from '@Common'
-import { HomePage, TransferPage, LoginPage, RegisterPage } from '@Pages'
+import { TopNav } from './Common'
+import { HomePage, TransferPage, LoginPage, RegisterPage } from './Pages'
 
 // STYLES
 import { AppContainer } from './AppStyles'
@@ -29,15 +31,7 @@ const theme = createTheme({
   },
 });
 
-// observer for viewport sizes
-const viewportObserver = () => {
-  const vh = window.innerHeight * 0.01;
-  const vw = window.innerWidth * 0.01;
-  // Then we set the value in the --vh custom property to the root of the document
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-  document.documentElement.style.setProperty('--vw', `${vw}px`);
-}
-const App = () => {
+const ProvidedApp = () => {
   const dispatch = useDispatch()
   const [ ready, setReady ] = React.useState(false)
 
@@ -54,7 +48,6 @@ const App = () => {
       if (token && token.length > 0) {
         const decodedToken = jwtDecode(token)
         const exp = (decodedToken.exp) * 1000
-        console.log(Date.now(), exp, Date.now() > exp)
         // check if token has expired
         if (Date.now() > exp) {
           console.log('token has expired...')
@@ -70,6 +63,7 @@ const App = () => {
         }
       }
 
+      console.log('aaaaaaaaaaaaaaaaaaaaaa')
       setReady(true)
     })()
 
@@ -80,37 +74,45 @@ const App = () => {
 
   return (
     <>
-        <ThemeProvider theme={theme}>
-          <AppContainer>
-
-            <TopNav />
-
-            {ready &&
-              <Router>
-                <Switch>
-                  <AuthRoute path="/" component={HomePage} exact />
-                  <AuthRoute path="/transfer" component={TransferPage} exact />
-                  <Route path="/login" component={LoginPage} exact />
-                  <Route path="/register" component={RegisterPage} exact />
-                </Switch>
-              </Router>
-            }
-
-            <ToastContainer
-              position="top-center"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-          </AppContainer>
-        </ThemeProvider>
+      {ready &&
+        <AppContainer>
+          <TopNav />
+          <BrowserRouter>
+            <Switch>
+              <AuthRoute path="/" component={HomePage} exact />
+              <AuthRoute path="/transfer" component={TransferPage} />
+              <Route path="/login" component={LoginPage} />
+              <Route path="/register" component={RegisterPage} />
+              <Route>
+                <div>404</div>
+              </Route>
+            </Switch>
+          </BrowserRouter>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </AppContainer>
+      }
     </>
   )
 }
 
-export default App
+const App = () => {
+  return (
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <ProvidedApp />
+      </ThemeProvider>
+    </Provider>
+  )
+}
+
+export default React.memo(App)

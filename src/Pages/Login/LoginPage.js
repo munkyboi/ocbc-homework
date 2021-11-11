@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { setAuthorizationHeader } from '@Utils'
+import { setAuthorizationHeader } from '../../Utils'
 import jwtDecode from 'jwt-decode'
 import { toast } from 'react-toastify'
 
@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 
 // REDUX
 import { useDispatch } from 'react-redux'
-import userSlice from '@Slices/userSlice'
+import userSlice from '../../Redux/Slices/userSlice'
 
 // COMPONENTS
 import {
@@ -19,7 +19,7 @@ import {
   PageHeader,
   ContentContainer,
   CustomTextField,
-} from '@Common'
+} from '../../Common'
 import { Alert } from '@mui/material';
 
 // STYLES
@@ -49,12 +49,10 @@ const LoginPage = () => {
     },
     {
       key: 'register',
-      type: 'button',
+      type: 'link',
+      to: '/register',
       variant: 'outlined',
-      label: 'Register',
-      onClick: () => {
-        history.push('/register')
-      }
+      label: 'Register'
     },
   ]
 
@@ -74,17 +72,14 @@ const LoginPage = () => {
           (async() => {
             let errors = 0
             setSubmitting(true)
-            console.log("========== on submit", data)
             await axios({
               url: `/login`,
               method: 'POST',
               data
             }).then(res => {
-              console.log(res)
               setAuthorizationHeader(res.data.token)
               // decode JSON Web Token
               const decodedToken = jwtDecode(res.data.token)
-              console.log('=========== decodedToken', decodedToken)
               // update redux
               dispatch(userSlice.actions.setAuthenticated(true))
               dispatch(userSlice.actions.setUserInfo({

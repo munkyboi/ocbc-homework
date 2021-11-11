@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format'
 import { format } from 'date-fns'
 
 // COMPONENTS
-import { Papyrus } from '@Common'
+import { Papyrus } from '../../../Common'
 import { Typography, Grid } from '@mui/material'
 
 const RenderTransactionItemType = (props) => {
@@ -17,8 +17,8 @@ const RenderTransactionItemType = (props) => {
             <Typography variant="caption" className="accountNumber">{props.sender.accountNo}</Typography>
           </Grid>
           <Grid item xs={6} className="valueColumn">
-            <Typography variant="h6" className="amount positive">
-              <NumberFormat decimalScale={2} fixedDecimalScale={true} value={props.amount} displayType={'text'} thousandSeparator={true} prefix={'SGD '} />
+            <Typography variant="body1" className="amount positive">
+              <NumberFormat decimalScale={2} fixedDecimalScale={true} value={props.amount} displayType={'text'} thousandSeparator={true} prefix={'S$'} />
             </Typography>
           </Grid>
         </Grid>
@@ -31,8 +31,8 @@ const RenderTransactionItemType = (props) => {
             <Typography variant="caption" className="accountNumber">{props.receipient.accountNo}</Typography>
           </Grid>
           <Grid item xs={6} className="valueColumn">
-            <Typography variant="h6" className="amount negative">
-              <NumberFormat decimalScale={2} fixedDecimalScale={true} value={props.amount} displayType={'text'} thousandSeparator={true} prefix={'SGD '} />
+            <Typography variant="body1" className="amount negative">
+              <NumberFormat decimalScale={2} fixedDecimalScale={true} value={props.amount} displayType={'text'} thousandSeparator={true} prefix={'S$'} />
             </Typography>
           </Grid>
         </Grid>
@@ -45,8 +45,8 @@ const RenderTransactionItemType = (props) => {
             <Typography variant="caption" className="accountNumber">{props.receipient.accountNo}</Typography>
           </Grid>
           <Grid item xs={6} className="valueColumn">
-            <Typography variant="h6" className="amount">
-              <NumberFormat decimalScale={2} fixedDecimalScale={true} value={props.amount} displayType={'text'} thousandSeparator={true} prefix={'SGD '} />
+            <Typography variant="body1" className="amount">
+              <NumberFormat decimalScale={2} fixedDecimalScale={true} value={props.amount} displayType={'text'} thousandSeparator={true} prefix={'S$'} />
             </Typography>
           </Grid>
         </Grid>

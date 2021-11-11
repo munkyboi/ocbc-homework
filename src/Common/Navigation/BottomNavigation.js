@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
 // COMPONENTS
@@ -13,10 +14,7 @@ const RenderAction = (props) => {
     case 'submit':
       return (
         <Button
-          className={cn('bottomButton', {
-            [`${props.className ? props.className : ''}`]: props.className,
-            'loading': props.isSubmitting
-          })}
+          className={cn('bottomButton')}
           type="submit"
           color={props.color}
           variant={props.variant}
@@ -42,19 +40,12 @@ const RenderAction = (props) => {
     default:
       return (
         <Button
-          className={cn('bottomButton', {
-            [`${props.className ? props.className : ''}`]: props.className
-          })}
+          to={props.to}
+          component={Link}
+          className={cn('bottomButton')}
           color={props.color}
           variant={props.variant}
           startIcon={props.startIcon ? <Icon>{props.startIcon}</Icon> : false}
-          onClick={() => {
-            if (props.context) {
-              props.handleSubmit()
-            } else {
-              props.onClick()
-            }
-          }}
           disableElevation
           disabled={props.context ? props.disabled : false}
         >
@@ -75,7 +66,6 @@ const BottomNav = (props) => {
   // listen for changes so we can set a css variable to adjust main content wrapper min-height
   const bottomNavRef = React.useRef()
   React.useEffect(() => {
-    // console.log('================ actions', actions)
     if (actions && bottomNavRef.current) {
       const h = bottomNavRef.current.offsetHeight
       document.documentElement.style.setProperty('--bottomNavHeight', `${h}px`);

@@ -18,7 +18,7 @@ body {
   /* height: 100%; */
   transition: transform 0.5s ease-in-out;
   background-color: rgba(245,245,245,1);
-  /* min-height: calc(calc(var(--vh, 1vh) * 100) - 56px - var(--bottomNavHeight));
+  /* min-height: calc(calc(var(--vh, 1vh) * 100) - 64px - var(--bottomNavHeight));
   padding-bottom: var(--bottomNavHeight); */
   overflow: hidden;
 }

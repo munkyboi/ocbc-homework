@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { setAuthorizationHeader } from '@Utils'
+import { setAuthorizationHeader } from '../../Utils'
 import jwtDecode from 'jwt-decode'
 import { toast } from 'react-toastify'
 
@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 
 // REDUX
 import { useDispatch } from 'react-redux'
-import userSlice from '@Slices/userSlice'
+import userSlice from '../../Redux/Slices/userSlice'
 
 // COMPONENTS
 import {
@@ -19,7 +19,7 @@ import {
   PageHeader,
   ContentContainer,
   CustomTextField,
-} from '@Common'
+} from '../../Common'
 import { Alert } from '@mui/material'
 
 // STYLES
@@ -69,17 +69,14 @@ const RegisterPage = () => {
           (async() => {
             let errors = 0
             setSubmitting(true)
-            console.log("========== on submit", data)
             await axios({
               url: `/register`,
               method: 'POST',
               data
             }).then(res => {
-              console.log(res)
               setAuthorizationHeader(res.data.token)
               // decode JSON Web Token
               const decodedToken = jwtDecode(res.data.token)
-              console.log('=========== decodedToken', decodedToken)
               // update redux
               dispatch(userSlice.actions.setAuthenticated(true))
               dispatch(userSlice.actions.setUserInfo({
@@ -104,7 +101,7 @@ const RegisterPage = () => {
         {({ handleChange, handleBlur, errors, isSubmitting, isValid, dirty, handleSubmit }) => (
           <Form>
             <ContentContainer>
-              <PageHeader title="Register" canGoBack />
+              <PageHeader title="Register" backTo='/login' />
               <div className="form">
 
                 <CustomTextField

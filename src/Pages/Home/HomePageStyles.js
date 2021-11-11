@@ -51,7 +51,7 @@ export const HomePageContainer = styled('div')`
 
   .transactionBox {
     padding: 2rem;
-    min-height: calc(calc(var(--vh, 1vh) * 100) - 244px - 56px - 4rem - var(--bottomNavHeight));
+    min-height: calc(calc(var(--vh, 1vh) * 100) - 244px - 64px - 4rem - var(--bottomNavHeight));
     .title {
       margin-bottom: 0.5rem;
     }
