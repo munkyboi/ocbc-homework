@@ -41,6 +41,7 @@ const LoginPage = () => {
   const bottomActions = [
     {
       key: 'login',
+      id: 'loginButton',
       type: 'submit',
       color: 'primary',
       variant: 'contained',
@@ -49,6 +50,7 @@ const LoginPage = () => {
     },
     {
       key: 'register',
+      id: 'registerButton',
       type: 'link',
       to: '/register',
       variant: 'outlined',
@@ -108,7 +110,7 @@ const LoginPage = () => {
               <div className="form">
                 <CustomTextField
                   name="username"
-                  id="login-username"
+                  id="loginForm-usernameField"
                   label="Username"
                   variant="filled"
                   size="standard"
@@ -123,7 +125,7 @@ const LoginPage = () => {
                 <CustomTextField
                   type='password'
                   name="password"
-                  id="login-password"
+                  id="loginForm-passwordField"
                   label="Password"
                   variant="filled"
                   size="standard"

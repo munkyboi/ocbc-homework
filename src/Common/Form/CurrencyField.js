@@ -5,15 +5,21 @@ import TextField from '@mui/material/TextField';
 import { InputAdornment } from '@mui/material'
 import NumberFormat from 'react-number-format'
 
-const BaseTextField = styled((props) => (
+const BaseTextField = styled((props) => {
+  const {
+    id,
+    ...rest
+  } = props
+  return (
     <TextField
       InputProps={{
         startAdornment: <InputAdornment position="start">SGD</InputAdornment>,
         disableUnderline: true
       }}
-      {...props}
+      {...rest}
+      data-testid={id}
     />
-  ))(({ theme }) => ({
+  )})(({ theme }) => ({
     '& .MuiFilledInput-root': {
       border: '2px solid #0f0f0f',
       overflow: 'hidden',

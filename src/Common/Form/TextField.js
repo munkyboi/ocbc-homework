@@ -3,9 +3,18 @@ import { default as styledComponent } from 'styled-components'
 import { alpha, styled } from "@mui/system";
 import TextField from '@mui/material/TextField';
 
-const BaseTextField = styled((props) => (
-    <TextField InputProps={{ disableUnderline: true }} {...props} />
-  ))(({ theme }) => ({
+const BaseTextField = styled((props) => {
+  const {
+    id,
+    ...rest
+  } = props
+  return (
+    <TextField
+      InputProps={{ disableUnderline: true }}
+      {...rest}
+      data-testid={id}
+    />
+  )})(({ theme }) => ({
     '& .MuiFilledInput-root': {
       border: '2px solid #0f0f0f',
       overflow: 'hidden',
@@ -30,28 +39,28 @@ const BaseTextField = styled((props) => (
         borderColor: theme.palette.primary.main,
       },
     },
-  }));
+}));
 
-  const Container = styledComponent('div')`
-    margin-bottom: 1rem;
-    
-    .MuiInputLabel-root {
-      font-size: 1rem;
-    }
-    .MuiFormHelperText-root {
-      font-size: 0.75rem;
-    }
-    .MuiFilledInput-root:after {
-      display: none;
-    }
-  `
-
-  const CustomTextField = (props) => {
-    return (
-      <Container>
-        <BaseTextField {...props} />
-      </Container>
-    )
+const Container = styledComponent('div')`
+  margin-bottom: 1rem;
+  
+  .MuiInputLabel-root {
+    font-size: 1rem;
   }
+  .MuiFormHelperText-root {
+    font-size: 0.75rem;
+  }
+  .MuiFilledInput-root:after {
+    display: none;
+  }
+`
 
-  export default React.memo(CustomTextField)
+const CustomTextField = (props) => {
+  return (
+    <Container>
+      <BaseTextField {...props} />
+    </Container>
+  )
+}
+
+export default React.memo(CustomTextField)

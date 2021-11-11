@@ -38,6 +38,7 @@ const TransferPage = () => {
   const bottomActions = [
     {
       key: 'transfer-now',
+      id: 'transfer-not-button',
       type: 'submit',
       color: 'primary',
       variant: 'contained',

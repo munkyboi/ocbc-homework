@@ -3,39 +3,47 @@ import { default as styledComponent } from 'styled-components'
 import { alpha, styled } from "@mui/system";
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 
-const SelectField = styled((props) => (
-  <Select {...props} />
-))(({ theme }) => ({
-  '&.MuiFilledInput-root': {
-    border: '2px solid #0f0f0f',
-    overflow: 'hidden',
-    borderRadius: 0,
-    fontSize: '1rem',
-    backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
-    '&:hover': {
-      backgroundColor: 'transparent',
+const SelectField = styled((props) => {
+  const {
+    id,
+    ...rest
+  } = props
+  return (
+    <Select
+      {...rest}
+      data-testid={id}
+    />
+  )})(({ theme }) => ({
+    '&.MuiFilledInput-root': {
+      border: '2px solid #0f0f0f',
+      overflow: 'hidden',
+      borderRadius: 0,
+      fontSize: '1rem',
+      backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
+      transition: theme.transitions.create([
+        'border-color',
+        'background-color',
+        'box-shadow',
+      ]),
+      '&:hover': {
+        backgroundColor: 'transparent',
+      },
+      '&.Mui-focused': {
+        backgroundColor: 'transparent',
+        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
+        borderColor: theme.palette.primary.main,
+      },
+      '&.Mui-error': {
+        border: '2px solid #ff0000',
+        backgroundColor: 'rgba(255,0,0,0.1)',
+      },
+      '&:before': {
+        display: 'none'
+      },
+      '&:after': {
+        display: 'none'
+      },
     },
-    '&.Mui-focused': {
-      backgroundColor: 'transparent',
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
-      borderColor: theme.palette.primary.main,
-    },
-    '&.Mui-error': {
-      border: '2px solid #ff0000',
-      backgroundColor: 'rgba(255,0,0,0.1)',
-    },
-    '&:before': {
-      display: 'none'
-    },
-    '&:after': {
-      display: 'none'
-    },
-  },
 }));
 
 const Container = styledComponent('div')`

@@ -12,6 +12,7 @@ const HomePage = () => {
   const bottomActions = [
     {
       key: 'make-transfer',
+      id: 'make-transfer-button',
       type: 'link',
       to: '/transfer',
       color: 'primary',

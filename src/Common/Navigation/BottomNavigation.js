@@ -16,6 +16,7 @@ const RenderAction = (props) => {
         <Button
           className={cn('bottomButton')}
           type="submit"
+          data-testid={`bottomNavButton-${props.id}`}
           color={props.color}
           variant={props.variant}
           startIcon={props.startIcon ? <Icon>{props.startIcon}</Icon> : false}
@@ -41,6 +42,7 @@ const RenderAction = (props) => {
       return (
         <Button
           to={props.to}
+          data-testid={`bottomNavButton-${props.id}`}
           component={Link}
           className={cn('bottomButton')}
           color={props.color}

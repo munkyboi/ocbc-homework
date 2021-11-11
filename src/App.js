@@ -20,7 +20,7 @@ import { HomePage, TransferPage, LoginPage, RegisterPage } from './Pages'
 
 // STYLES
 import { AppContainer } from './AppStyles'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import 'react-toastify/dist/ReactToastify.min.css'
 
 const theme = createTheme({
@@ -62,8 +62,7 @@ const ProvidedApp = () => {
           }))
         }
       }
-
-      console.log('aaaaaaaaaaaaaaaaaaaaaa')
+      
       setReady(true)
     })()
 

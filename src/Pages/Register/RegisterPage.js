@@ -44,6 +44,7 @@ const RegisterPage = () => {
   const bottomActions = [
     {
       key: 'register',
+      id: 'register-button',
       type: 'submit',
       color: 'primary',
       variant: 'contained',
