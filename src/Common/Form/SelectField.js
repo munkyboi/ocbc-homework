@@ -39,6 +39,8 @@ const SelectField = styled((props) => (
 }));
 
 const Container = styledComponent('div')`
+  margin-bottom: 1rem;
+  
   .MuiFormLabel-root {
     font-size: 1rem;
   }
@@ -58,20 +60,31 @@ const CustomSelectField = (props) => {
     helperText,
     ...restProps
   } = props
+
+  const [ ready, setReady ] = React.useState(false)
+
+  React.useEffect(() => {
+    setReady(true)
+  }, []) // eslint-disable-line
+
   return (
-    <Container>
-      <FormControl fullWidth={fullWidth} variant={variant} error={error} className={className}>
-        <InputLabel id={props.id} required={props.required}>{label}</InputLabel>
-        <SelectField {...restProps}>
-          {options && options.map(item => (
-            <MenuItem key={item.key} value={item.value}>{item.text}</MenuItem>
-          ))}
-        </SelectField>
-        {helperText &&
-          <FormHelperText>{helperText}</FormHelperText>
-        }
-      </FormControl>
-    </Container>
+    <>
+      {ready &&
+        <Container>
+          <FormControl fullWidth={fullWidth} variant={variant} error={error} className={className}>
+            <InputLabel id={props.id} required={props.required}>{label}</InputLabel>
+            <SelectField {...restProps}>
+              {options && options.map(item => (
+                <MenuItem key={item.key} value={item.value}>{item.text}</MenuItem>
+              ))}
+            </SelectField>
+            {helperText &&
+              <FormHelperText>{helperText}</FormHelperText>
+            }
+          </FormControl>
+        </Container>
+      }
+    </>
   )
 }
 

@@ -21,7 +21,7 @@ const HomePage = () => {
       startIcon: 'paid',
       onClick: () => {
         history.push('/transfer')
-      }
+      },
     },
   ]
 
@@ -37,7 +37,6 @@ const HomePage = () => {
         <Box className='transactionBox'>
           <Typography variant="h6" className="title">Your transaction history</Typography>
           <Transactions />
-
         </Box>
       </ContentContainer>
       

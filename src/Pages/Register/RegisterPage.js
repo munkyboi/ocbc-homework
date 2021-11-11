@@ -82,6 +82,11 @@ const RegisterPage = () => {
               console.log('=========== decodedToken', decodedToken)
               // update redux
               dispatch(userSlice.actions.setAuthenticated(true))
+              dispatch(userSlice.actions.setUserInfo({
+                userId: decodedToken.userId,
+                username: decodedToken.username,
+                accountNo: decodedToken.accountNo
+              }))
               toast.success(`Thank you for signing up`)
             }).catch(err => {
               errors += 1
@@ -111,7 +116,7 @@ const RegisterPage = () => {
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.username}
+                  error={!!errors.username}
                   helperText={errors.username}
                   className="field"
                 />
@@ -126,7 +131,7 @@ const RegisterPage = () => {
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.password}
+                  error={!!errors.password}
                   helperText={errors.password}
                   className="field"
                 />
@@ -141,7 +146,7 @@ const RegisterPage = () => {
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.confirmPassword}
+                  error={!!errors.confirmPassword}
                   helperText={errors.confirmPassword}
                   className="field"
                 />

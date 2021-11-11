@@ -4,11 +4,20 @@ import { Box } from '@mui/material'
 
 
 export const TopNavContainer = styled(Box)`
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
-  width: calc(100%);
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  width: 100vw;
+  z-index: 20;
+  height: 56px;
+  transition: background 0.15s ease-out;
+
+  &.scrolled {
+    background-color: rgba(245,245,245,1);
+  }
+
+  .MuiToolbar-root {
+    display: flex;
+    justify-content: flex-end;
+  }
 `

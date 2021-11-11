@@ -120,7 +120,7 @@ const LoginPage = () => {
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.username}
+                  error={!!errors.username}
                   helperText={errors.username}
                   className="field"
                   disabled={isSubmitting}
@@ -135,7 +135,7 @@ const LoginPage = () => {
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.password}
+                  error={!!errors.password}
                   helperText={errors.password}
                   className="field"
                   disabled={isSubmitting}

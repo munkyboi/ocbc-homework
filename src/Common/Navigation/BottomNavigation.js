@@ -75,7 +75,7 @@ const BottomNav = (props) => {
   // listen for changes so we can set a css variable to adjust main content wrapper min-height
   const bottomNavRef = React.useRef()
   React.useEffect(() => {
-    console.log('================ actions', actions)
+    // console.log('================ actions', actions)
     if (actions && bottomNavRef.current) {
       const h = bottomNavRef.current.offsetHeight
       document.documentElement.style.setProperty('--bottomNavHeight', `${h}px`);

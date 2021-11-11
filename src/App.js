@@ -7,7 +7,6 @@ import {
 import AuthRoute from './Routers/AuthRoute';
 import jwtDecode from 'jwt-decode'
 import { ToastContainer } from 'react-toastify'
-import PageTransition from 'react-router-page-transition'
 
 // REDUX
 import { useDispatch } from 'react-redux'
@@ -30,13 +29,27 @@ const theme = createTheme({
   },
 });
 
+// observer for viewport sizes
+const viewportObserver = () => {
+  const vh = window.innerHeight * 0.01;
+  const vw = window.innerWidth * 0.01;
+  // Then we set the value in the --vh custom property to the root of the document
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  document.documentElement.style.setProperty('--vw', `${vw}px`);
+}
 const App = () => {
   const dispatch = useDispatch()
   const [ ready, setReady ] = React.useState(false)
 
   // Check for JWT if user was previously logged in
   React.useEffect(() => {
+
     (async() => {
+      // listen for changes in viewport sizes
+      viewportObserver()
+      window.addEventListener('resize', viewportObserver)
+
+      // check if localstorage has JWT
       const token = localStorage.Authorization
       if (token && token.length > 0) {
         const decodedToken = jwtDecode(token)
@@ -59,30 +72,29 @@ const App = () => {
 
       setReady(true)
     })()
+
+    return (() => {
+      window.removeEventListener('resize', viewportObserver)
+    })
   }, []) // eslint-disable-line
 
   return (
     <>
-      {ready &&
         <ThemeProvider theme={theme}>
           <AppContainer>
 
             <TopNav />
 
-            <Router>
-              <Route
-                render={({ location }) => (
-                  <PageTransition timeout={300}>
-                    <Switch location={location}>
-                      <AuthRoute path="/" component={HomePage} exact />
-                      <AuthRoute path="/transfer" component={TransferPage} exact />
-                      <Route path="/login" component={LoginPage} exact />
-                      <Route path="/register" component={RegisterPage} exact />
-                    </Switch>
-                  </PageTransition>
-                )}
-              />
-            </Router>
+            {ready &&
+              <Router>
+                <Switch>
+                  <AuthRoute path="/" component={HomePage} exact />
+                  <AuthRoute path="/transfer" component={TransferPage} exact />
+                  <Route path="/login" component={LoginPage} exact />
+                  <Route path="/register" component={RegisterPage} exact />
+                </Switch>
+              </Router>
+            }
 
             <ToastContainer
               position="top-center"
@@ -97,7 +109,6 @@ const App = () => {
             />
           </AppContainer>
         </ThemeProvider>
-      }
     </>
   )
 }

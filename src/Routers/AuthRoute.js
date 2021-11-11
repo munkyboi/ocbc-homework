@@ -8,16 +8,21 @@ import { getUserState } from '@Slices/userSlice'
 const AuthRoute = ({ component: Component, ...rest }) => {
   const { authenticated } = useSelector(getUserState)
   return (
-    <Route
-      {...rest}
-      render={(props) => {
-        if (!authenticated) {
-          return <Redirect to='/login' />
-        } else {
-          return <Component {...props} />
-        }
-      }}
-    />
+    <Route {...rest}>
+      {authenticated ?
+        <Component /> : 
+        <Redirect to='/login' />
+      }
+    </Route>
+    //   {...rest}
+    //   render={(props) => {
+    //     if (!authenticated) {
+    //       return <Redirect to='/login' />
+    //     } else {
+    //       return <Component />
+    //     }
+    //   }}
+    // />
   )
 }
 

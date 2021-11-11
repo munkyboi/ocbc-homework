@@ -7,6 +7,7 @@ export const BottomNavContainer = styled('div')`
   width: calc(100% - 4rem);
   padding: 2rem;
   background-image: linear-gradient(to top, rgba(245,245,245,1), rgba(245,245,245,0));
+  z-index: 10;
   .bottomButton {
     font-size: 1.25rem;
     width: calc(100%);

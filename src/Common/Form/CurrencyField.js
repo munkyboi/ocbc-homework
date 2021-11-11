@@ -41,6 +41,8 @@ const BaseTextField = styled((props) => (
   }));
 
   const Container = styledComponent('div')`
+    margin-bottom: 1rem;
+    
     .MuiInputLabel-root {
       font-size: 1rem;
     }

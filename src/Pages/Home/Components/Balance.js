@@ -50,7 +50,10 @@ const Balance = () => {
             <Typography variant="h6" className="title">You Have</Typography>
             <Typography variant="h4" className="amount">
               {userInfo && userInfo.balance ?
-                <NumberFormat decimalScale={2} fixedDecimalScale={true} value={userInfo.balance} displayType={'text'} thousandSeparator={true} prefix={'SGD '} /> : 
+                <>
+                  <span className='symbol'>S$</span>
+                  <NumberFormat decimalScale={2} fixedDecimalScale={true} value={userInfo.balance} displayType={'text'} thousandSeparator={true} />
+                </> : 
                 <>...</>
               }
             </Typography>

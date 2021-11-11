@@ -12,6 +12,10 @@ export const HomePageContainer = styled('div')`
       border-radius: 2rem;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
+      background-image: url('/images/amount-bg.jpg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: bottom right;
     }
 
     .title {
@@ -20,6 +24,14 @@ export const HomePageContainer = styled('div')`
     .amount {
       font-weight: 900;
       margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .symbol {
+        font-size: 1rem;
+        color: #9c9c9c;
+        margin-right: 0.25rem;
+      }
     }
     .label {
       color: #9c9c9c;
@@ -39,6 +51,7 @@ export const HomePageContainer = styled('div')`
 
   .transactionBox {
     padding: 2rem;
+    min-height: calc(calc(var(--vh, 1vh) * 100) - 244px - 56px - 4rem - var(--bottomNavHeight));
     .title {
       margin-bottom: 0.5rem;
     }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router';
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -33,6 +34,7 @@ const validationSchema = Yup.object().shape({
 
 const TransferPage = () => {
   const token = localStorage.Authorization
+  const history = useHistory()
   const bottomActions = [
     {
       key: 'transfer-now',
@@ -93,6 +95,7 @@ const TransferPage = () => {
         validationSchema={validationSchema}
         onSubmit={(data, {setErrors, setSubmitting}) => {
           (async() => {
+            let errors = 0
             setSubmitting(true)
             console.log("========== on submit", data)
             await axios({
@@ -104,15 +107,23 @@ const TransferPage = () => {
               data
             }).then(res => {
               const data = res.data
-              toast.success(`You've successfully transfered SGD ${data.amount} to ${payees.filter(i => i.value === data.recipientAccount).map(n => n.text)}`)
+              const amt = new Intl.NumberFormat('en-SG', {
+                style: 'currency',
+                currency: 'SGD',
+              }).format(data.amount);
+              toast.success(`You've successfully transfered S${amt} to ${payees.filter(i => i.value === data.recipientAccount).map(n => n.text)}`)
             }).catch(err => {
+              errors += 1
               console.log(JSON.stringify(err))
             })
             setSubmitting(false)
+            if (errors === 0) {
+              history.push('/')
+            }
           })()
         }}
       >
-        {({ handleChange, handleBlur, setFieldValue, errors, isSubmitting, isValid, dirty, handleSubmit, validateField }) => (
+        {({ handleChange, handleBlur, setFieldValue, errors, isSubmitting, isValid, dirty, values, handleSubmit, validateField }) => (
           <Form>
             <ContentContainer>
               <PageHeader title="Transfer" canGoBack />
@@ -127,11 +138,11 @@ const TransferPage = () => {
                   id="transfer-payee"
                   label="Select Payee"
                   variant="filled"
-                  size="standard"
                   fullWidth
+                  value={values.receipientAccountNo}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.receipientAccountNo}
+                  error={!!errors.receipientAccountNo}
                   helperText={errors.receipientAccountNo}
                   className="field"
                   options={payees}
@@ -139,12 +150,16 @@ const TransferPage = () => {
                   required
                 />
 
-                <input type="hidden" name="amount" />
+                <input
+                  type="hidden"
+                  name="amount"
+                  defaultValue={values.amount}
+                  onChange={handleChange}
+                />
                 <CustomCurrencyField
                   id="transfer-formatted-amount"
                   label="Amount"
                   variant="filled"
-                  size="standard"
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -152,10 +167,11 @@ const TransferPage = () => {
                     console.log(ev.floatValue)
                     setFieldValue('amount', ev.floatValue)
                   }}
-                  error={errors.amount}
+                  error={!!errors.amount}
                   helperText={errors.amount}
                   className="field"
                   disabled={isSubmitting || !ready}
+                  autoComplete="off"
                   required
                 />
 
@@ -164,11 +180,10 @@ const TransferPage = () => {
                   name="description"
                   label="Description"
                   variant="filled"
-                  size="standard"
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.description}
+                  error={!!errors.description}
                   helperText={errors.description}
                   className="field"
                   disabled={isSubmitting || !ready}
