@@ -121,6 +121,7 @@ const LoginPage = () => {
                   helperText={errors.username}
                   className="field"
                   disabled={isSubmitting}
+                  aria-label='username'
                 />
                 <CustomTextField
                   type='password'
@@ -136,6 +137,7 @@ const LoginPage = () => {
                   helperText={errors.password}
                   className="field"
                   disabled={isSubmitting}
+                  aria-label='password'
                 />
                 {errors.status === 'failed' &&
                   <Alert severity="error">{errors.error}</Alert>

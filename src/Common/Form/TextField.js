@@ -1,7 +1,7 @@
 import React from 'react'
 import { default as styledComponent } from 'styled-components'
 import { alpha, styled } from "@mui/system";
-import TextField from '@mui/material/TextField';
+import { TextField } from '@mui/material';
 
 const BaseTextField = styled((props) => {
   const {
@@ -10,9 +10,15 @@ const BaseTextField = styled((props) => {
   } = props
   return (
     <TextField
-      InputProps={{ disableUnderline: true }}
-      {...rest}
+      InputLabelProps={{
+        htmlFor: id
+      }}
+      InputProps={{
+        id: id,
+        disableUnderline: true
+      }}
       data-testid={id}
+      {...rest}
     />
   )})(({ theme }) => ({
     '& .MuiFilledInput-root': {

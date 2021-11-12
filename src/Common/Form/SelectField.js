@@ -10,8 +10,8 @@ const SelectField = styled((props) => {
   } = props
   return (
     <Select
-      {...rest}
       data-testid={id}
+      {...rest}
     />
   )})(({ theme }) => ({
     '&.MuiFilledInput-root': {

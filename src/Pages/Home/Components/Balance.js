@@ -45,7 +45,7 @@ const Balance = () => {
     <>
         {ready ?
           <>
-            <Typography variant="h6" className="title">You Have</Typography>
+            <Typography variant="h6" className="title" aria-label='Home Title'>You Have</Typography>
             <Typography variant="h4" className="amount">
               {userInfo && userInfo.balance ?
                 <>
